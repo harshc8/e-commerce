@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { Gutter } from '../../Gutter'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Footer } from '../../../../payload/payload-types'
+import { Footer, Media } from '../../../../payload/payload-types'
 import { Button } from '../../Button'
 
 const FooterComponent = ({ footer }: { footer: Footer }) => {
@@ -37,9 +37,9 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
             <Link href={'/'}>
               <Image src={'/logo-white.svg'} alt="logo" width={170} height={50} />
             </Link>
-            {/* <div className={classes.socialLinks}>
+            <div className={classes.socialLinks}>
               {navItems.map(item => {
-                const icon = ''
+                const icon = item?.link?.icon as Media
                 return (
                   <Button
                     key={item.link.label}
@@ -48,11 +48,17 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
                     newTab={true}
                     className={classes.socialLinkItem}
                   >
-                    {item.link.label}
+                    <Image
+                      src={icon?.url}
+                      alt={item.link.label}
+                      width={24}
+                      height={24}
+                      className={classes.socialIcon}
+                    />
                   </Button>
                 )
               })}
-            </div> */}
+            </div>
           </div>
         </Gutter>
       </div>
